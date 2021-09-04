@@ -18,28 +18,70 @@ class Board():
 				print(j,end=" ")
 			print("\n")
 
-			
+	#the possible moves function returns possible moves for the piece on the selected possition
 	def possible_moves(self, x,y):
-		if(self.board[y][x].lower() == "p"):
-			if(self.board[y+1][x] == "null"):
-				print((x,y+1))
-			if(self.board[y+1][x+1].isupper() == False):
-				print((x+1,y+1))
-			if(self.board[y+1][x-1].isupper() == False):
-				print((x-1,y+1))
+		possibleMoves = []
+		
+		#checks if selected possition is a small pawn
+		if(self.board[y][x] == "p"):
 
+			#checks if pawn can move forward
+			if(self.board[y-1][x] == "null"):
+				possibleMoves.append((x,y-1))
+				
+			
+			#checks if pawn can kill
+			if(self.board[y-1][x+1].isupper() == False):
+				possibleMoves.append((x+1,y-1))
+
+			#checks if pawn can kill
+			if(self.board[y-1][x-1].isupper() == False):
+				possibleMoves.append((x-1,y+1))
+			
+		#checks if selected possition is a big pawn
+		if(self.board[y][x] == "P"):
+
+			#checks if pawn can move forward
+			if(self.board[y-1][x] == "null"):
+				possibleMoves.append((x,y-1))
+				
+			
+			#checks if pawn can kill
+			if(self.board[y-1][x+1].isupper() == False):
+				possibleMoves.append((x+1,y-1))
+
+			#checks if pawn can kill
+			if(self.board[y-1][x-1].isupper() == False):
+				possibleMoves.append((x-1,y+1))
+			
+		#checks if selected position is a king
 		elif(self.board[y][x].lower() == "k"):
-			print("king")
-		elif(self.board[y][x].lower() == "q"):
-			print("queen")
-		elif(self.board[y][x].lower() == "b"):
-			print("bishop")
+			
+			#list of positions around king so the for loop can loop through it and reduce the amount of if statements 
+			posAroundKing = [(y+1,x), (y+1,x+1), (y, x+1),(y-1, x+1),(y-1,x),(y-1,x-1),(y,x-1),(y+1,x-1)]
+
+			#loops around the posAroundKings array
+			for i in posAroundKing:
+				if(self.board[i[0]][i[1]] == "null"):
+					possibleMoves.append((i))
+
+
+
 		elif(self.board[y][x].lower() == "n"):
 			print("knight")
+
+		#the rook, queen, and bishop will have their own selecting mechanisms because they can go infinitely in several directions
+
+		elif(self.board[y][x].lower() == "q"):
+			print("queen")
+
+		elif(self.board[y][x].lower() == "b"):
+			print("bishop")
+
 		elif(self.board[y][x].lower() == "r"):
 			print("rook")
-	
-			
+		
+		return possibleMoves
 	
 
 
@@ -49,4 +91,4 @@ b.print_board()
 
 while True:
 	inp = input("x, y:").split(",")
-	b.possible_moves(int(inp[0]),int(inp[1]))
+	print(b.possible_moves(int(inp[0]),int(inp[1])))
