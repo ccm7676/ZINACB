@@ -13,51 +13,11 @@ class Board():
 	# print out the matrix neatly in the console
 		
 	def print_board(self):
-		
-		for i in self.board[0]:
-			print(i,end=" ")
-			
-		print("\n")
-		
-		for i in self.board[1]:
-			print(i, end=" ")
-			
-		print("\n")
-			
-		for i in self.board[2]:
-			print(i,end=" ")
-			
-		print("\n")
-			
-		for i in self.board[3]:
-			print(i,end=" ")
-			
-		print("\n")
-			
-		for i in self.board[4]:
-			print(i,end=" ")
-			
-		print("\n")
-			
-		for i in self.board[5]:
-			print(i,end=" ")
-			
-		print("\n")
-			
-		for i in self.board[6]:
-			print(i,end=" ")
-			
-		print("\n")
-			
-		for i in self.board[7]:
-			print(i,end=" ")
-			
-		print("\n")
-			
-		for i in self.board[8]:
-			print(i,end=" ")
-			
-		print("\n")
+		for i in range(len(self.board)):
+			for j in self.board[i]:
+				print(j,end=" ")
+			print("\n")
+
 			
 			
 			
