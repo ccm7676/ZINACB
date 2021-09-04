@@ -3,10 +3,10 @@ class Board():
 	
 	board = [["r", "n", "b", "q", "k", "b", "n", "r"], # black pieces
 			["p", "p", "p", "p", "p", "p", "p", "p"], # black pawns
-			["null", "null", "null", "null", "null", "null", "null", "null"], # empty
-			["null", "null", "null", "null", "null", "null", "null", "null"], # empty
-			["null", "null", "null", "null", "null", "null", "null", "null"], # empty
-			["null", "null", "null", "null", "null", "null", "null", "null"], # empty
+			["nul", "nul", "nul", "nul", "nul", "nul", "nul", "nul"], # empty
+			["nul", "nul", "nul", "nul", "nul", "nul", "nul", "nul"], # empty
+			["nul", "nul", "nul", "nul", "nul", "nul", "nul", "nul"], # empty
+			["nul", "nul", "nul", "nul", "nul", "nul", "nul", "nul"], # empty
 			["P", "P", "P", "P", "P", "P", "P", "P"], # white pawns
 			["R", "N", "B", "Q", "K", "B", "N", "R"]] # white pieces
 			
@@ -26,7 +26,7 @@ class Board():
 		if(self.board[y][x] == "p"):
 
 			#checks if pawn can move forward
-			if(self.board[y-1][x] == "null"):
+			if(self.board[y-1][x] == "nul"):
 				possibleMoves.append((x,y-1))
 				
 			
@@ -42,36 +42,57 @@ class Board():
 		if(self.board[y][x] == "P"):
 
 			#checks if pawn can move forward
-			if(self.board[y-1][x] == "null"):
-				possibleMoves.append((x,y-1))
+			if(self.board[y+1][x] == "nul"):
+				possibleMoves.append((x,y+1))
 				
 			
 			#checks if pawn can kill
-			if(self.board[y-1][x+1].isupper() == False):
-				possibleMoves.append((x+1,y-1))
+			if(self.board[y+1][x+1].islower() == True):
+				possibleMoves.append((x+1,y+1))
 
 			#checks if pawn can kill
-			if(self.board[y-1][x-1].isupper() == False):
+			if(self.board[y+1][x-1].islower() == True):
 				possibleMoves.append((x-1,y+1))
 			
-		#checks if selected position is a king
-		elif(self.board[y][x].lower() == "k"):
+		#checks if selected position is a small king
+		elif(self.board[y][x] == "k"):
 			
 			#list of positions around king so the for loop can loop through it and reduce the amount of if statements 
-			posAroundKing = [(y+1,x), (y+1,x+1), (y, x+1),(y-1, x+1),(y-1,x),(y-1,x-1),(y,x-1),(y+1,x-1)]
+			movePosKing = [(x,y+1), (x+1,y+1), (x+1,y),(x+1,y-1),(x,y-1),(x-1,y-1),(x-1,y),(x-1,y+1)]
 
 			#loops around the posAroundKings array
-			for i in posAroundKing:
-				if(self.board[i[0]][i[1]] == "null"):
-					possibleMoves.append((i))
+			for i in movePosKing:
+				if(self.board[i[1]][i[0]] == "nul" or self.board[i[1]][i[0]].isupper() == True):
+					possibleMoves.append(i)
+		
+		#checks if selected position is big King
+		elif(self.board[y][x] == "K"):
+			
+			#list of positions around king so the for loop can loop through it and reduce the amount of if statements 
+			movePosKing = [(x,y+1), (x+1,y+1), (x+1,y),(x+1,y-1),(x,y-1),(x-1,y-1),(x-1,y),(x-1,y+1)]
 
+			#loops around the posAroundKings array
+			for i in movePosKing:
+				if(self.board[i[1]][i[0]] == "nul" or self.board[i[1]][i[0]].islower() == True):
+					possibleMoves.append(i)
+					
+		#checks if selected position is small knight
+		elif(self.board[y][x] == "n"):
+			movePosKnight = [(x-1,y-2),(x+1,y-2),(x+2, y-1),(x+2,y+1),(x+1,y+2),(x-1,y+2), (x-2,y+1),(x-2,y-1)]
+			
+			for i in movePosKnight:
+				if(self.board[i[1]][i[0]] == "nul" or self.board[i[1]][i[0]].isupper() == True):
+					possibleMoves.append(i)
 
-
-		elif(self.board[y][x].lower() == "n"):
-			print("knight")
+		#checks if selected position is small knight
+		elif(self.board[y][x] == "N"):
+			movePosKnight = [(x-1,y-2),(x+1,y-2),(x+2, y-1),(x+2,y+1),(x+1,y+2),(x-1,y+2), (x-2,y+1),(x-2,y-1)]
+			
+			for i in movePosKnight:
+				if(self.board[i[1]][i[0]] == "nul" or self.board[i[1]][i[0]].islower() == True):
+					possibleMoves.append(i)
 
 		#the rook, queen, and bishop will have their own selecting mechanisms because they can go infinitely in several directions
-
 		elif(self.board[y][x].lower() == "q"):
 			print("queen")
 
