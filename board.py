@@ -63,7 +63,8 @@ class Board():
 			#loops around the posAroundKings array
 			for i in movePosKing:
 				if(self.board[i[1]][i[0]] == "nul" or self.board[i[1]][i[0]].isupper() == True):
-					possibleMoves.append(i)
+					if(i[1] >= 0  and i[0] >= 0):
+						possibleMoves.append(i)
 		
 		#checks if selected position is big King
 		elif(self.board[y][x] == "K"):
@@ -74,7 +75,8 @@ class Board():
 			#loops around the posAroundKings array
 			for i in movePosKing:
 				if(self.board[i[1]][i[0]] == "nul" or self.board[i[1]][i[0]].islower() == True):
-					possibleMoves.append(i)
+					if(i[1] >= 0  and i[0] >= 0):
+						possibleMoves.append(i)
 					
 		#checks if selected position is small knight
 		elif(self.board[y][x] == "n"):
@@ -82,7 +84,8 @@ class Board():
 			
 			for i in movePosKnight:
 				if(self.board[i[1]][i[0]] == "nul" or self.board[i[1]][i[0]].isupper() == True):
-					possibleMoves.append(i)
+					if(i[1] >= 0  and i[0] >= 0):
+						possibleMoves.append(i)
 
 		#checks if selected position is small knight
 		elif(self.board[y][x] == "N"):
@@ -90,9 +93,10 @@ class Board():
 			
 			for i in movePosKnight:
 				if(self.board[i[1]][i[0]] == "nul" or self.board[i[1]][i[0]].islower() == True):
-					possibleMoves.append(i)
+					if(i[1] >= 0  and i[0] >= 0):
+						possibleMoves.append(i)
 
-		#the rook, queen, and bishop will have their own selecting mechanisms because they can go infinitely in several directions
+
 		elif(self.board[y][x].lower() == "q"):
 			print("queen")
 
