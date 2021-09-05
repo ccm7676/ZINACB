@@ -22,7 +22,7 @@ class Zinca():
 		print("j: " + str(x))
 		
 
-		if(board.board[y][x] == "p"):
+		if(board.board[y][x] == "P"):
 
 			#checks if pawn can move forward
 			if(board.board[y-1][x] == "nul"):
@@ -30,15 +30,15 @@ class Zinca():
 				
 			
 			#checks if pawn can kill
-			if(board.board[y-1][x+1].isupper() == False):
+			if(board.board[y-1][x+1].islower() == True):
 				possibleMoves.append((x+1,y-1))
 
 			#checks if pawn can kill
-			if(board.board[y-1][x-1].isupper() == False):
+			if(board.board[y-1][x-1].islower() == True):
 				possibleMoves.append((x-1,y+1))
 			
 		#checks if selected possition is a big pawn
-		if(board.board[y][x] == "P"):
+		if(board.board[y][x] == "p"):
 
 			#checks if pawn can move forward
 			if(board.board[y+1][x] == "nul"):
@@ -46,11 +46,11 @@ class Zinca():
 				
 			
 			#checks if pawn can kill
-			if(board.board[y+1][x+1].islower() == True):
+			if(board.board[y+1][x+1].isupper() == True):
 				possibleMoves.append((x+1,y+1))
 
 			#checks if pawn can kill
-			if(board.board[y+1][x-1].islower() == True):
+			if(board.board[y+1][x-1].isupper() == True):
 				possibleMoves.append((x-1,y+1))
 			
 		#checks if selected position is a small king
@@ -99,7 +99,8 @@ class Zinca():
 			print("bishop")
 
 		elif(board.board[y][x] == "r"):
-
+			#I WANNA DIE
+			#ROOK CAN SUCK MY COOK
 			#check how many possible moves in one direction
 			for i in range(10):
 				if(y-i >= 0 and y-i <= 7):
