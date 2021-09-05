@@ -14,6 +14,9 @@ class Game():
 		
 		if (self.game_board.get_piece_at_pos(inp) == "p" or self.game_board.get_piece_at_pos(inp) == "P"):
 			print(self.move_generator.get_pawn_moves(inp, self.game_board))
+
+		if (self.game_board.get_piece_at_pos(inp) == "n" or self.game_board.get_piece_at_pos(inp) == "N"):
+			print(self.move_generator.get_knight_moves(inp, self.game_board))
 	
 		
 

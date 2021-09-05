@@ -5,10 +5,10 @@ class Board():
 	
 	board = [["r", "n", "b", "q", "k", "b", "n", "r"], # black pieces
 			["p", "p", "p", "p", "p", "p", "p", "p"], # black pawns
-			["nul", "nul", "nul", "nul", "nul", "nul", "nul", "nul"], # empty
-			["nul", "nul", "nul", "nul", "nul", "nul", "nul", "nul"], # empty
-			["nul", "nul", "nul", "nul", "nul", "nul", "nul", "nul"], # empty
-			["nul", "nul", "nul", "nul", "nul", "nul", "nul", "nul"], # empty
+			["-", "-", "-", "-", "-", "-", "-", "-"], # empty
+			["-", "-", "-", "-", "-", "-", "-", "-"], # empty
+			["-", "-", "-", "-", "-", "-", "-", "-"], # empty
+			["-", "-", "-", "-", "-", "-", "-", "-"], # empty
 			["P", "P", "P", "P", "P", "P", "P", "P"], # white pawns
 			["R", "N", "B", "Q", "K", "B", "N", "R"]] # white pieces
 			
@@ -50,7 +50,10 @@ class Board():
 		y,x = row, column
 		
 		return self.board[y][x]
-		
-		
 
 
+
+
+
+		
+		
