@@ -1,7 +1,7 @@
 # board class, the class which holds the logic for the pieces and the board
 
 class Board():
-	# pieces matrix; to be linked with other pieces classes 
+	# pieces matrix;
 	
 	board = [["r", "n", "b", "q", "k", "b", "n", "r"], # black pieces
 			["p", "p", "p", "p", "p", "p", "p", "p"], # black pawns
@@ -41,5 +41,16 @@ class Board():
 			for j in self.board[i]:
 				print(j,end=" ")
 			print("\n")
+			
+	def get_piece_at_pos(self, pos):
+		
+		column, row = list(pos.strip().lower())
+		row = int(row) - 1
+		column = self.alpha_to_index[column]
+		y,x = row, column
+		
+		return self.board[y][x]
+		
+		
 
 
