@@ -67,9 +67,18 @@ class MoveGenerator():
         movePosKnight = [(y+2, x-1), (y-1, x+2), (y-2, x-1), (y+2, x+1), (y+1,x+2),(y+1,x-1), (y-2, x+1)]
 
 
-        if (board_handler.board[y][x].lower() == "N"):
+        if (board_handler.board[y][x]  == "n"):
             for i in movePosKnight:
-                print("not gonna do this now")
+                if(i[0] >= 0 and i[0] <= 7 and i[1] >= 0 and i[1] <= 7):
+                    if(board_handler.board[i[0]][i[1]] == "-" or board_handler.board[i[0]][i[1]].isupper() == True):
+                        possibleMoves.append(i)
+        
+        if (board_handler.board[y][x] == "N"):
+            for i in movePosKnight:
+                if(i[0] >= 0 and i[0] <= 7 and i[1] >= 0 and i[1] <= 7):
+                    if(board_handler.board[i[0]][i[1]] == "-" or board_handler.board[i[0]][i[1]].islower() == True):
+                        possibleMoves.append(i)
+
                 
         possibleMoves =["".join([board_handler.index_to_alpha[i[1]], str(i[0] + 1)]) for i in possibleMoves]
 
