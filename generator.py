@@ -36,20 +36,47 @@ class MoveGenerator():
             print("Generating moves for " + pawn_pos + " pawn...")
 
             # check if its a black pawn space in front is empty
-            if (board_handler.board[y][x] == "p" and board_handler.board[y+1][x] == "-"):
-                possibleMoves.append((y+1, x))
+            if(board_handler.board[y][x] == "p"):
+                
+                #check if pos infront is empty 
+                if (board_handler.board[y+1][x] == "-"):
+                    possibleMoves.append((y+1, x))
+                
+                #check if pawn is at starting pos
+                if (y == 1):
+                    possibleMoves.append((y+2, x))
 
-            if (board_handler.board[y][x] == "p" and y == 1):
+                #check if theres an enemy to kill
+                if(y+1 >= 0 and y+1 <= 7 and x+1 >= 0 and x+1 <= 7):
+                    if(board_handler.board[y+1][x+1].isupper() == True):
+                        possibleMoves.append((y+1,x+1))
+                
+                #check if theres an enemy to kill
+                if(y+1 >= 0 and y+1 <= 7 and x-1 >= 0 and x-1 <= 7):
+                    if(board_handler.board[y+1][x-1].isupper() == True):
+                        possibleMoves.append((y+1,x-1))
 
-                possibleMoves.append((y+2, x))
+            if (board_handler.board[y][x] == "P"):
 
-            if (board_handler.board[y][x] == "P" and y == 6):
+                if(y == 6):
+                    possibleMoves.append((y-2, x))
 
-                possibleMoves.append((y-2, x))
+                # check if its a white pawn and space in front is empty
+                if (board_handler.board[y-1][x] == "-"):
+                    possibleMoves.append((y-1, x))
+                
+                #check if theres an enemy to kill
+                if(y-1 >= 0 and y-1 <= 7 and x+1 >= 0 and x+1 <= 7):
+                    if(board_handler.board[y-1][x+1].lower() == True):
+                        possibleMoves.append((y-1,x+1))
 
-            # check if its a white pawn and space in front is empty
-            if (board_handler.board[y][x] == "P" and board_handler.board[y-1][x] == "-"):
-                possibleMoves.append((y-1, x))
+                #check if theres and enemy to kill
+
+                if(y-1 >= 0 and y-1 <= 7 and x-1 >= 0 and x-1 <= 7):
+                    if(board_handler.board[y-1][x-1].lower() == True):
+                        possibleMoves.append((y-1,x-1))
+                
+
 
         possibleMoves = ["".join(
             [board_handler.index_to_alpha[i[1]], str(i[0] + 1)]) for i in possibleMoves]
