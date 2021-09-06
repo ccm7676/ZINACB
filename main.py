@@ -12,11 +12,14 @@ class Game():
 		self.game_board.print_board()
 		inp = input("chess pos: ").strip().lower()
 		
-		if (self.game_board.get_piece_at_pos(inp) == "p" or self.game_board.get_piece_at_pos(inp) == "P"):
+		if (self.game_board.get_piece_at_pos(inp).lower() == "p"):
 			print(self.move_generator.get_pawn_moves(inp, self.game_board))
 
-		if (self.game_board.get_piece_at_pos(inp) == "n" or self.game_board.get_piece_at_pos(inp) == "N"):
+		if (self.game_board.get_piece_at_pos(inp).lower() == "n"):
 			print(self.move_generator.get_knight_moves(inp, self.game_board))
+		
+		if (self.game_board.get_piece_at_pos(inp).lower() == "k"):
+			print(self.move_generator.get_king_moves(inp, self.game_board))
 	
 		
 

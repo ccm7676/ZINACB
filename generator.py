@@ -110,3 +110,30 @@ class MoveGenerator():
         possibleMoves =["".join([board_handler.index_to_alpha[i[1]], str(i[0] + 1)]) for i in possibleMoves]
 
         return possibleMoves
+
+
+    def get_king_moves(self, king_pos, board_handler):
+        possibleMoves = []
+        
+        column, row = list(king_pos.strip().lower())
+        row = int(row) - 1
+        column = board_handler.alpha_to_index[column]
+        y,x = row, column
+
+        movePosKing = [(y+1,x), (y+1,x+1), (y,x+1),(y-1,x+1),(y-1,x),(y-1,x-1),(y,x-1),(y+1,x-1)]
+
+        if (board_handler.board[y][x]  == "k"):
+            for i in movePosKing:
+                if(i[0] >= 0 and i[0] <= 7 and i[1] >= 0 and i[1] <= 7):
+                    if(board_handler.board[i[0]][i[1]] == "-" or board_handler.board[i[0]][i[1]].isupper() == True):
+                        possibleMoves.append(i)
+        
+        if (board_handler.board[y][x] == "K"):
+            for i in movePosKing:
+                if(i[0] >= 0 and i[0] <= 7 and i[1] >= 0 and i[1] <= 7):
+                    if(board_handler.board[i[0]][i[1]] == "-" or board_handler.board[i[0]][i[1]].islower() == True):
+                        possibleMoves.append(i)
+        
+        possibleMoves =["".join([board_handler.index_to_alpha[i[1]], str(i[0] + 1)]) for i in possibleMoves]
+
+        return possibleMoves
