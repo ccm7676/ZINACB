@@ -32,26 +32,51 @@ class MoveGenerator():
         y, x = row, column
 
         # check if given position is a pawn
-        if (board_handler.board[y][x] == "P" or board_handler.board[y][x] == "p"):
+        if (board_handler.board[y][x].lower() == "p"):
             print("Generating moves for " + pawn_pos + " pawn...")
 
             # check if its a black pawn space in front is empty
-            if (board_handler.board[y][x] == "p" and board_handler.board[y+1][x] == "-"):
-                possibleMoves.append((y+1, x))
+            if(board_handler.board[y][x] == "p"):
+                
+                #check if pos infront is empty 
+                if (board_handler.board[y+1][x] == "-"):
+                    possibleMoves.append((y+1, x))
+                
+                #check if pawn is at starting pos
+                if (y == 1):
+                    possibleMoves.append((y+2, x))
 
-            if (board_handler.board[y][x] == "p" and pawn_pos == "a2" or pawn_pos == "b2" or pawn_pos == "c2"
-                    or pawn_pos == "d2" or pawn_pos == "e2" or pawn_pos == "f2" or pawn_pos == "g2" or pawn_pos == "h2"):
+                #check if theres an enemy to kill
+                if(y+1 >= 0 and y+1 <= 7 and x+1 >= 0 and x+1 <= 7):
+                    if(board_handler.board[y+1][x+1].isupper() == True):
+                        possibleMoves.append((y+1,x+1))
+                
+                #check if theres an enemy to kill
+                if(y+1 >= 0 and y+1 <= 7 and x-1 >= 0 and x-1 <= 7):
+                    if(board_handler.board[y+1][x-1].isupper() == True):
+                        possibleMoves.append((y+1,x-1))
 
-                possibleMoves.append((y+2, x))
+            if (board_handler.board[y][x] == "P"):
 
-            if (board_handler.board[y][x] == "P" and pawn_pos == "a7" or pawn_pos == "b7" or pawn_pos == "c7"
-                    or pawn_pos == "d7" or pawn_pos == "e7" or pawn_pos == "f7" or pawn_pos == "g7" or pawn_pos == "h7"):
+                if(y == 6):
+                    possibleMoves.append((y-2, x))
 
-                possibleMoves.append((y-2, x))
+                # check if its a white pawn and space in front is empty
+                if (board_handler.board[y-1][x] == "-"):
+                    possibleMoves.append((y-1, x))
+                
+                #check if theres an enemy to kill
+                if(y-1 >= 0 and y-1 <= 7 and x+1 >= 0 and x+1 <= 7):
+                    if(board_handler.board[y-1][x+1].lower() == True):
+                        possibleMoves.append((y-1,x+1))
 
-            # check if its a white pawn and space in front is empty
-            if (board_handler.board[y][x] == "P" and board_handler.board[y-1][x] == "-"):
-                possibleMoves.append((y-1, x))
+                #check if theres and enemy to kill
+
+                if(y-1 >= 0 and y-1 <= 7 and x-1 >= 0 and x-1 <= 7):
+                    if(board_handler.board[y-1][x-1].lower() == True):
+                        possibleMoves.append((y-1,x-1))
+                
+
 
         possibleMoves = ["".join(
             [board_handler.index_to_alpha[i[1]], str(i[0] + 1)]) for i in possibleMoves]
@@ -68,13 +93,48 @@ class MoveGenerator():
         
         movePosKnight = [(y+2, x-1), (y-1, x+2), (y-2, x-1), (y+2, x+1), (y+1,x+2),(y+1,x-1), (y-2, x+1)]
 
-
-        if (board_handler.board[y][x] == "n" or board_handler.board[y][x] == "N"):
+        #small knight
+        if (board_handler.board[y][x]  == "n"):
             for i in movePosKnight:
-                if (i[1] >= 0 and i[0] >= 0 and i[0] <= 7 and i[1] <= 7):
-                    if (board_handler.board[i[1]][i[0]] == "-" or board_handler.board[i[1]][i[0]].islower() != True):
+                if(i[0] >= 0 and i[0] <= 7 and i[1] >= 0 and i[1] <= 7):
+                    if(board_handler.board[i[0]][i[1]] == "-" or board_handler.board[i[0]][i[1]].isupper() == True):
+                        possibleMoves.append(i)
+        
+        #big knight
+        if (board_handler.board[y][x] == "N"):
+            for i in movePosKnight:
+                if(i[0] >= 0 and i[0] <= 7 and i[1] >= 0 and i[1] <= 7):
+                    if(board_handler.board[i[0]][i[1]] == "-" or board_handler.board[i[0]][i[1]].islower() == True):
                         possibleMoves.append(i)
 
+                
+        possibleMoves =["".join([board_handler.index_to_alpha[i[1]], str(i[0] + 1)]) for i in possibleMoves]
+
+        return possibleMoves
+
+
+    def get_king_moves(self, king_pos, board_handler):
+        possibleMoves = []
+        
+        column, row = list(king_pos.strip().lower())
+        row = int(row) - 1
+        column = board_handler.alpha_to_index[column]
+        y,x = row, column
+
+        movePosKing = [(y+1,x), (y+1,x+1), (y,x+1),(y-1,x+1),(y-1,x),(y-1,x-1),(y,x-1),(y+1,x-1)]
+
+        if (board_handler.board[y][x]  == "k"):
+            for i in movePosKing:
+                if(i[0] >= 0 and i[0] <= 7 and i[1] >= 0 and i[1] <= 7):
+                    if(board_handler.board[i[0]][i[1]] == "-" or board_handler.board[i[0]][i[1]].isupper() == True):
+                        possibleMoves.append(i)
+        
+        if (board_handler.board[y][x] == "K"):
+            for i in movePosKing:
+                if(i[0] >= 0 and i[0] <= 7 and i[1] >= 0 and i[1] <= 7):
+                    if(board_handler.board[i[0]][i[1]] == "-" or board_handler.board[i[0]][i[1]].islower() == True):
+                        possibleMoves.append(i)
+        
         possibleMoves =["".join([board_handler.index_to_alpha[i[1]], str(i[0] + 1)]) for i in possibleMoves]
 
         return possibleMoves
