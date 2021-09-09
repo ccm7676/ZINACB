@@ -91,7 +91,7 @@ class MoveGenerator():
         column = board_handler.alpha_to_index[column]
         y,x = row, column
         
-        movePosKnight = [(y+2, x-1), (y-1, x+2), (y-2, x-1), (y+2, x+1), (y+1,x+2),(y+1,x-1), (y-2, x+1)]
+        movePosKnight = [(y+2, x-1), (y+2, x+1), (y+1, x+2), (y-1, x+2), (y-2,x+1),(y-2,x-1), (y-1, x-2),(y+1,x-2)]
 
         #small knight
         if (board_handler.board[y][x]  == "n"):
