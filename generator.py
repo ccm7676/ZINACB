@@ -138,3 +138,104 @@ class MoveGenerator():
         possibleMoves =["".join([board_handler.index_to_alpha[i[1]], str(i[0] + 1)]) for i in possibleMoves]
 
         return possibleMoves
+    
+    def get_rook_moves(self, rook_pos, board_handler):
+        possibleMoves = []
+        
+        column, row = list(rook_pos.strip().lower())
+        row = int(row) - 1
+        column = board_handler.alpha_to_index[column]
+        y,x = row, column
+
+        if(board_handler.board[y][x] == "r"):
+            
+            for i in range(8):
+                if(y-i >= 0 and y-i <= 7):
+                    if(board_handler.board[y-i][x] == "-"):
+                        possibleMoves.append((x,y-i))
+                    elif(board_handler.board[y-i][x].isupper() == True):
+                        possibleMoves.append((x, y-i))
+                        break
+                    else:
+                        break
+
+            for i in range(8):
+                if(y+i >= 0 and y+i <= 7):
+                    if(board_handler.board[y+i][x] == "-"):
+                        possibleMoves.append((x,y+i))
+                    elif(board_handler.board[y+i][x].isupper() == True):
+                        possibleMoves.append((x, y+i))
+                        break
+                    else:
+                        break
+
+            for i in range(8):
+                if(x-i >= 0 and x-i <= 7):
+                    if(board_handler.board[y][x-i] == "-"):
+                        possibleMoves.append((x-i,y))
+                    elif(board_handler.board[y][x-i].isupper() == True):
+                        possibleMoves.append((x-i, y))
+                        break
+                    else:
+                        break
+
+            for i in range(8):
+                if(x+i >= 0 and x+i <= 7):
+                    if(board_handler.board[y][x+i] == "-"):
+                        possibleMoves.append((x+i,y))
+                    elif(board_handler.board[y][x+i].isupper() == True):
+                        possibleMoves.append((x+i, y))
+                        break
+                    else:
+                        break
+        if(board_handler.board[y][x] == "R"):
+            
+            for i in range(8):
+                if(y-i >= 0 and y-i <= 7):
+                    if(board_handler.board[y-i][x] == "-"):
+                        possibleMoves.append((x,y-i))
+                    elif(board_handler.board[y-i][x].islower() == True):
+                        possibleMoves.append((x, y-i))
+                        break
+                    else:
+                        break
+
+            for i in range(8):
+                if(y+i >= 0 and y+i <= 7):
+                    if(board_handler.board[y+i][x] == "-"):
+                        possibleMoves.append((x,y+i))
+                    elif(board_handler.board[y+i][x].islower() == True):
+                        possibleMoves.append((x, y+i))
+                        break
+                    else:
+                        break
+
+            for i in range(8):
+                if(x-i >= 0 and x-i <= 7):
+                    if(board_handler.board[y][x-i] == "-"):
+                        possibleMoves.append((x-i,y))
+                    elif(board_handler.board[y][x-i].islower() == True):
+                        possibleMoves.append((x-i, y))
+                        break
+                    else:
+                        break
+
+            for i in range(8):
+                if(x+i >= 0 and x+i <= 7):
+                    if(board_handler.board[y][x+i] == "-"):
+                        possibleMoves.append((x+i,y))
+                    elif(board_handler.board[y][x+i].islower() == True):
+                        possibleMoves.append((x+i, y))
+                        break
+                    else:
+                        break
+
+        possibleMoves =["".join([board_handler.index_to_alpha[i[1]], str(i[0] + 1)]) for i in possibleMoves]
+
+        return possibleMoves
+                    
+
+
+                
+            
+            

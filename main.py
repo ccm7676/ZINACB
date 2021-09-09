@@ -22,6 +22,8 @@ class Game():
 		if (self.game_board.get_piece_at_pos(inp).lower() == "k"):
 			print(self.move_generator.get_king_moves(inp, self.game_board))
 	
+		if (self.game_board.get_piece_at_pos(inp).lower() == "r"):
+			print(self.move_generator.get_rook_moves(inp, self.game_board))
 		
 
 bo = board.Board()
