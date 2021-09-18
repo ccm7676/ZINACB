@@ -216,7 +216,7 @@ class MoveGenerator():
                     if(board_handler.board[y][x-i] == "-"):
                         possibleMoves.append((x-i,y))
                     elif(board_handler.board[y][x-i].islower() == True):
-                        possibleMoves.append((x-i, y))
+                        possibleMoves.append((y,x-i))
                         break
                     else:
                         break
@@ -224,14 +224,14 @@ class MoveGenerator():
             for i in range(1,8):
                 if(x+i >= 0 and x+i <= 7):
                     if(board_handler.board[y][x+i] == "-"):
-                        possibleMoves.append((x+i,y))
+                        possibleMoves.append((y,x+i))
                     elif(board_handler.board[y][x+i].islower() == True):
-                        possibleMoves.append((x+i, y))
+                        possibleMoves.append((y,x+i))
                         break
                     else:
                         break
 
-        possibleMoves =["".join([board_handler.index_to_alpha[i[1]], str(i[0] + 1)]) for i in possibleMoves]
+        possibleMoves =["".join([board_handler.index_to_alpha[i[0]], str(i[1] + 1)]) for i in possibleMoves]
 
         return possibleMoves
                     
