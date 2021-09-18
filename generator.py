@@ -147,8 +147,10 @@ class MoveGenerator():
         column = board_handler.alpha_to_index[column]
         y,x = row, column
 
+        #checks for small rook
         if(board_handler.board[y][x] == "r"):
             
+            #loops through  all the possible from the piece position to the back of the board
             for i in range(1,8):
                 if(y-i >= 0 and y-i <= 7):
              
@@ -160,6 +162,7 @@ class MoveGenerator():
                     else:
                         break
 
+            #loops through  all the possible from the piece position to the front of the board
             for i in range(1,8):
                 if(y+i >= 0 and y+i <= 7):
                     if(board_handler.board[y+i][x] == "-"):
@@ -169,7 +172,8 @@ class MoveGenerator():
                         break
                     else:
                         break
-
+            
+            #loops through  all the possible from the piece position to the left of the board
             for i in range(1,8):
                 if(x-i >= 0 and x-i <= 7):
                     if(board_handler.board[y][x-i] == "-"):
@@ -179,7 +183,8 @@ class MoveGenerator():
                         break
                     else:
                         break
-
+            
+            #loops through  all the possible from the piece position to the right of the board
             for i in range(1,8):
                 if(x+i >= 0 and x+i <= 7):
                     if(board_handler.board[y][x+i] == "-"):
@@ -191,6 +196,7 @@ class MoveGenerator():
                         break
         if(board_handler.board[y][x] == "R"):
             
+            #loops through  all the possible from the piece position to the back of the board
             for i in range(1,8):
                 if(y-i >= 0 and y-i <= 7):
                     if(board_handler.board[y-i][x] == "-"):
@@ -200,7 +206,8 @@ class MoveGenerator():
                         break
                     else:
                         break
-
+            
+            #loops through  all the possible from the piece position to the front of the board
             for i in range(1,8):
                 if(y+i >= 0 and y+i <= 7):
                     if(board_handler.board[y+i][x] == "-"):
@@ -211,6 +218,7 @@ class MoveGenerator():
                     else:
                         break
 
+            #loops through  all the possible from the piece position to the left of the board
             for i in range(1,8):
                 if(x-i >= 0 and x-i <= 7):
                     if(board_handler.board[y][x-i] == "-"):
@@ -221,6 +229,7 @@ class MoveGenerator():
                     else:
                         break
 
+            #loops through  all the possible from the piece position to the right of the board
             for i in range(1,8):
                 if(x+i >= 0 and x+i <= 7):
                     if(board_handler.board[y][x+i] == "-"):
