@@ -246,6 +246,113 @@ class MoveGenerator():
                     
 
 
+    def get_bishop_moves(self, bishop_pos, board_handler):
+            possibleMoves = []
+            
+            column, row = list(bishop_pos.strip().lower())
+            row = int(row) - 1
+            column = board_handler.alpha_to_index[column]
+            y,x = row, column
+
+            #checks for small bishop
+            if(board_handler.board[y][x] == "b"):
                 
-            
-            
+                #loops through  all the possible from the piece position to the back of the board
+                for i in range(1,8):
+                    if(y-i >= 0 and y-i <= 7 and x-i >=0 and x-i <= 7):
+                
+                        if(board_handler.board[y-i][x-i] == "-"):
+                            possibleMoves.append((x-i,y-i))
+                        elif(board_handler.board[y-i][x-i].isupper() == True):
+                            possibleMoves.append((x-i, y-i))
+                            break
+                        else:
+                            break
+
+                #loops through  all the possible from the piece position to the front of the board
+                for i in range(1,8):
+                    if(y+i >= 0 and y+i <= 7 and x-i >= 0 and x-i <= 7):
+                        if(board_handler.board[y+i][x-i] == "-"):
+                            possibleMoves.append((x-i,y+i))
+                        elif(board_handler.board[y+i][x-i].isupper() == True):
+                            possibleMoves.append((x-i, y+i))
+                            break
+                        else:
+                            break
+                
+                #loops through  all the possible from the piece position to the left of the board
+                for i in range(1,8):
+                    if(x+i >= 0 and x+i <= 7 and y+1 >= 0 and y+1 <= 7):
+                        if(board_handler.board[y+i][x+i] == "-"):
+                            possibleMoves.append((x+i,y+i))
+                        elif(board_handler.board[y+i][x+i].isupper() == True):
+                            possibleMoves.append((x+i, y+i))
+                            break
+                        else:
+                            break
+                
+                #loops through  all the possible from the piece position to the right of the board
+                for i in range(1,8):
+                    if(x+i >= 0 and x+i <= 7 and y-i >= 0 and y-i <= 7):
+                        if(board_handler.board[y-i][x+i] == "-"):
+                            possibleMoves.append((x+i,y-i))
+                        elif(board_handler.board[y-i][x+i].isupper() == True):
+                            possibleMoves.append((x+i, y-i))
+                            break
+                        else:
+                            break
+
+            if(board_handler.board[y][x] == "B"):
+                
+                #loops through  all the possible from the piece position to the back of the board
+                for i in range(1,8):
+                    if(y-i >= 0 and y-i <= 7 and x-i >=0 and x-i <= 7):
+                
+                        if(board_handler.board[y-i][x-i] == "-"):
+                            possibleMoves.append((x-i,y-i))
+                        elif(board_handler.board[y-i][x-i].islower() == True):
+                            possibleMoves.append((x-i, y-i))
+                            break
+                        else:
+                            break
+
+                #loops through  all the possible from the piece position to the front of the board
+                for i in range(1,8):
+                    if(y+i >= 0 and y+i <= 7 and x-i >= 0 and x-i <= 7):
+                        if(board_handler.board[y+i][x-i] == "-"):
+                            possibleMoves.append((x-i,y+i))
+                        elif(board_handler.board[y+i][x-i].islower() == True):
+                            possibleMoves.append((x-i, y+i))
+                            break
+                        else:
+                            break
+                
+                #loops through  all the possible from the piece position to the left of the board
+                for i in range(1,8):
+                    if(x+i >= 0 and x+i <= 7 and y+1 >= 0 and y+1 <= 7):
+                        if(board_handler.board[y+i][x+i] == "-"):
+                            possibleMoves.append((x+i,y+i))
+                        elif(board_handler.board[y+i][x+i].islower() == True):
+                            possibleMoves.append((x+i, y+i))
+                            break
+                        else:
+                            break
+                
+                #loops through  all the possible from the piece position to the right of the board
+                for i in range(1,8):
+                    if(x+i >= 0 and x+i <= 7 and y-i >= 0 and y-i <= 7):
+                        if(board_handler.board[y-i][x+i] == "-"):
+                            possibleMoves.append((x+i,y-i))
+                        elif(board_handler.board[y-i][x+i].islower() == True):
+                            possibleMoves.append((x+i, y-i))
+                            break
+                        else:
+                            break
+
+            possibleMoves =["".join([board_handler.index_to_alpha[i[0]], str(i[1] + 1)]) for i in possibleMoves]
+
+            return possibleMoves
+
+              
+                
+                
