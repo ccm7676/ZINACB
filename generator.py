@@ -352,6 +352,207 @@ class MoveGenerator():
             possibleMoves =["".join([board_handler.index_to_alpha[i[0]], str(i[1] + 1)]) for i in possibleMoves]
 
             return possibleMoves
+        
+    
+    def get_queen_moves(self, queen_pos, board_handler):
+            possibleMoves = []
+                
+            column, row = list(queen_pos.strip().lower())
+            row = int(row) - 1
+            column = board_handler.alpha_to_index[column]
+            y,x = row, column
+
+            #checks for small queen
+            if(board_handler.board[y][x] == "q"):
+                
+                #loops through  all the possible from the piece position to the front left of the board
+                for i in range(1,8):
+                    if(y-i >= 0 and y-i <= 7 and x-i >=0 and x-i <= 7):
+                
+                        if(board_handler.board[y-i][x-i] == "-"):
+                            possibleMoves.append((x-i,y-i))
+                        elif(board_handler.board[y-i][x-i].isupper() == True):
+                            possibleMoves.append((x-i, y-i))
+                            break
+                        else:
+                            break
+
+                #loops through  all the possible from the piece position to the back left of the board
+                for i in range(1,8):
+                    if(y+i >= 0 and y+i <= 7 and x-i >= 0 and x-i <= 7):
+                        if(board_handler.board[y+i][x-i] == "-"):
+                            possibleMoves.append((x-i,y+i))
+                        elif(board_handler.board[y+i][x-i].isupper() == True):
+                            possibleMoves.append((x-i, y+i))
+                            break
+                        else:
+                            break
+                
+                #loops through  all the possible from the piece position to the back right of the board
+                for i in range(1,8):
+                    if(x+i >= 0 and x+i <= 7 and y+1 >= 0 and y+1 <= 7):
+                        if(board_handler.board[y+i][x+i] == "-"):
+                            possibleMoves.append((x+i,y+i))
+                        elif(board_handler.board[y+i][x+i].isupper() == True):
+                            possibleMoves.append((x+i, y+i))
+                            break
+                        else:
+                            break
+                
+                #loops through  all the possible from the piece position to the front right of the board
+                for i in range(1,8):
+                    if(x+i >= 0 and x+i <= 7 and y-i >= 0 and y-i <= 7):
+                        if(board_handler.board[y-i][x+i] == "-"):
+                            possibleMoves.append((x+i,y-i))
+                        elif(board_handler.board[y-i][x+i].isupper() == True):
+                            possibleMoves.append((x+i, y-i))
+                            break
+                        else:
+                            break
+                #loops through  all the possible from the piece position to the back of the board
+                for i in range(1,8):
+                    if(y-i >= 0 and y-i <= 7):
+                
+                        if(board_handler.board[y-i][x] == "-"):
+                            possibleMoves.append((x,y-i))
+                        elif(board_handler.board[y-i][x].isupper() == True):
+                            possibleMoves.append((x, y-i))
+                            break
+                        else:
+                            break
+
+                #loops through  all the possible from the piece position to the front of the board
+                for i in range(1,8):
+                    if(y+i >= 0 and y+i <= 7):
+                        if(board_handler.board[y+i][x] == "-"):
+                            possibleMoves.append((x,y+i))
+                        elif(board_handler.board[y+i][x].isupper() == True):
+                            possibleMoves.append((x, y+i))
+                            break
+                        else:
+                            break
+                
+                #loops through  all the possible from the piece position to the left of the board
+                for i in range(1,8):
+                    if(x-i >= 0 and x-i <= 7):
+                        if(board_handler.board[y][x-i] == "-"):
+                            possibleMoves.append((x-i,y))
+                        elif(board_handler.board[y][x-i].isupper() == True):
+                            possibleMoves.append((x-i, y))
+                            break
+                        else:
+                            break
+                
+                #loops through  all the possible from the piece position to the right of the board
+                for i in range(1,8):
+                    if(x+i >= 0 and x+i <= 7):
+                        if(board_handler.board[y][x+i] == "-"):
+                            possibleMoves.append((x+i,y))
+                        elif(board_handler.board[y][x+i].isupper() == True):
+                            possibleMoves.append((x+i, y))
+                            break
+                        else:
+                            break
+
+            if(board_handler.board[y][x] == "Q"):
+                
+                #loops through  all the possible from the piece position to the font left of the board
+                for i in range(1,8):
+                    if(y-i >= 0 and y-i <= 7 and x-i >=0 and x-i <= 7):
+                
+                        if(board_handler.board[y-i][x-i] == "-"):
+                            possibleMoves.append((x-i,y-i))
+                        elif(board_handler.board[y-i][x-i].islower() == True):
+                            possibleMoves.append((x-i, y-i))
+                            break
+                        else:
+                            break
+
+                #loops through  all the possible from the piece position to the back left of the board
+                for i in range(1,8):
+                    if(y+i >= 0 and y+i <= 7 and x-i >= 0 and x-i <= 7):
+                        if(board_handler.board[y+i][x-i] == "-"):
+                            possibleMoves.append((x-i,y+i))
+                        elif(board_handler.board[y+i][x-i].islower() == True):
+                            possibleMoves.append((x-i, y+i))
+                            break
+                        else:
+                            break
+                
+                #loops through  all the possible from the piece position to the back right of the board
+                for i in range(1,8):
+                    if(x+i >= 0 and x+i <= 7 and y+1 >= 0 and y+1 <= 7):
+                        if(board_handler.board[y+i][x+i] == "-"):
+                            possibleMoves.append((x+i,y+i))
+                        elif(board_handler.board[y+i][x+i].islower() == True):
+                            possibleMoves.append((x+i, y+i))
+                            break
+                        else:
+                            break
+                
+                #loops through  all the possible from the piece position to the front right of the board
+                for i in range(1,8):
+                    if(x+i >= 0 and x+i <= 7 and y-i >= 0 and y-i <= 7):
+                        if(board_handler.board[y-i][x+i] == "-"):
+                            possibleMoves.append((x+i,y-i))
+                        elif(board_handler.board[y-i][x+i].islower() == True):
+                            possibleMoves.append((x+i, y-i))
+                            break
+                        else:
+                            break
+                
+                #loops through  all the possible from the piece position to the back of the board
+                for i in range(1,8):
+                    if(y-i >= 0 and y-i <= 7):
+                        if(board_handler.board[y-i][x] == "-"):
+                            possibleMoves.append((x,y-i))
+                        elif(board_handler.board[y-i][x].islower() == True):
+                            possibleMoves.append((x, y-i))
+                            break
+                        else:
+                            break
+                
+                #loops through  all the possible from the piece position to the front of the board
+                for i in range(1,8):
+                    if(y+i >= 0 and y+i <= 7):
+                        if(board_handler.board[y+i][x] == "-"):
+                            possibleMoves.append((x,y+i))
+                        elif(board_handler.board[y+i][x].islower() == True):
+                            possibleMoves.append((x, y+i))
+                            break
+                        else:
+                            break
+
+                #loops through  all the possible from the piece position to the left of the board
+                for i in range(1,8):
+                    if(x-i >= 0 and x-i <= 7):
+                        if(board_handler.board[y][x-i] == "-"):
+                            possibleMoves.append((x-i,y))
+                        elif(board_handler.board[y][x-i].islower() == True):
+                            possibleMoves.append((y,x-i))
+                            break
+                        else:
+                            break
+
+                #loops through  all the possible from the piece position to the right of the board
+                for i in range(1,8):
+                    if(x+i >= 0 and x+i <= 7):
+                        if(board_handler.board[y][x+i] == "-"):
+                            possibleMoves.append((y,x+i))
+                        elif(board_handler.board[y][x+i].islower() == True):
+                            possibleMoves.append((y,x+i))
+                            break
+                        else:
+                            break
+
+            possibleMoves =["".join([board_handler.index_to_alpha[i[0]], str(i[1] + 1)]) for i in possibleMoves]
+
+            return possibleMoves
+    
+
+
+          
+
 
               
                 

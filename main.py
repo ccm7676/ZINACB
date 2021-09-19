@@ -27,6 +27,9 @@ class Game():
 		
 		if (self.game_board.get_piece_at_pos(inp).lower() == "b"):
 			print(self.move_generator.get_bishop_moves(inp, self.game_board))
+
+		if (self.game_board.get_piece_at_pos(inp).lower() == "q"):
+			print(self.move_generator.get_queen_moves(inp, self.game_board))
 		
 
 bo = board.Board()
